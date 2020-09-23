@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Mvc_Ogrenci_Kayit.Models.Ogrenci>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ÖĞRENCİ LİSTESİ</h2>
+
+<p>
+    @Html.ActionLink("yeni Kayıt", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*th>table head yani tablo başlığı anlamına gelmektedir*@
+            @Html.DisplayNameFor(model => model.OgrAd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrMail)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.OgrAdres)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrAd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrSoyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrMail)
+            </td>
+            @*bu kısımda bulunan  OgrFotograf kısmını sildim. Çünkü, link olarak görünmesini istemiyorum.*@
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrAdres)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.OgrID } , new {@class="btn btn-success"}) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.OgrID }, new { @class="btn btn-warning"}) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.OgrID }, new { @class="btn btn-danger"})
+            </td>
+        </tr>
+    }
+
+</table>
